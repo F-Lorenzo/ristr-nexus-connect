@@ -17,6 +17,7 @@ const Navbar = () => {
     { name: 'RistrEvents', path: '/ristr-events' },
     { name: 'Consultoría', path: '/consultoria' },
     { name: 'Marketplace', path: '/marketplace' },
+    { name: 'Dashboard', path: '/dashboard' },
   ];
 
   const handleAuthAction = () => {
@@ -53,7 +54,7 @@ const Navbar = () => {
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2 rounded-lg font-semibold hover:from-yellow-300 hover:to-orange-400 transition-all duration-200 flex items-center gap-2"
               >
                 <User className="w-4 h-4" />
-                {isAuthenticated ? 'Dashboard' : 'Ingresar'}
+                {isAuthenticated ? 'Mi Cuenta' : 'Ingresar'}
               </button>
             </div>
 
@@ -87,7 +88,7 @@ const Navbar = () => {
                 className="w-full mt-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2 rounded-lg font-semibold hover:from-yellow-300 hover:to-orange-400 transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <User className="w-4 h-4" />
-                {isAuthenticated ? 'Dashboard' : 'Ingresar'}
+                {isAuthenticated ? 'Mi Cuenta' : 'Ingresar'}
               </button>
             </div>
           )}
