@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import { Users, Coffee, Monitor, Check, Star, ArrowRight } from 'lucide-react';
+import { Users, Coffee, Monitor, Check, Star, ArrowRight, Crown } from 'lucide-react';
 
 const RistrEvents = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -92,6 +92,25 @@ const RistrEvents = () => {
         "Acceso prioritario a TOP"
       ],
       popular: false
+    },
+    {
+      name: "Platino",
+      price: "$2000",
+      period: "USD/mes",
+      events: "Premium Ilimitado",
+      description: "La experiencia de networking más exclusiva para CEOs y ejecutivos C-Level",
+      features: [
+        "Todo lo incluido en plan Oro",
+        "Eventos exclusivos C-Level",
+        "Mesa privada en eventos premium",
+        "Matchmaking personalizado IA",
+        "Consultoría estratégica 1:1",
+        "Acceso a network internacional",
+        "Personal branding premium",
+        "Mentoría ejecutiva mensual"
+      ],
+      popular: false,
+      premium: true
     }
   ];
 
@@ -190,20 +209,31 @@ const RistrEvents = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {subscriptionPlans.map((plan, index) => (
               <div 
                 key={index}
                 className={`relative bg-gray-900 border-2 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 cursor-pointer ${
-                  plan.popular 
-                    ? 'border-yellow-400 shadow-2xl shadow-yellow-500/20' 
-                    : selectedPlan === plan.name
-                      ? 'border-yellow-400'
-                      : 'border-gray-700 hover:border-yellow-400/50'
+                  plan.premium
+                    ? 'border-purple-400 shadow-2xl shadow-purple-500/20 bg-gradient-to-b from-gray-900 to-purple-900/20'
+                    : plan.popular 
+                      ? 'border-yellow-400 shadow-2xl shadow-yellow-500/20' 
+                      : selectedPlan === plan.name
+                        ? 'border-yellow-400'
+                        : 'border-gray-700 hover:border-yellow-400/50'
                 }`}
                 onClick={() => setSelectedPlan(plan.name)}
               >
-                {plan.popular && (
+                {plan.premium && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-1">
+                      <Crown className="w-4 h-4" />
+                      PREMIUM
+                    </span>
+                  </div>
+                )}
+                
+                {plan.popular && !plan.premium && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2 rounded-full text-sm font-bold flex items-center gap-1">
                       <Star className="w-4 h-4" />
@@ -213,28 +243,38 @@ const RistrEvents = () => {
                 )}
                 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                  <div className="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-2">
+                  <h3 className={`text-2xl font-bold mb-2 ${plan.premium ? 'bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent' : 'text-white'}`}>
+                    {plan.name}
+                  </h3>
+                  <div className={`text-4xl font-bold mb-2 ${
+                    plan.premium 
+                      ? 'bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent'
+                      : 'bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent'
+                  }`}>
                     {plan.price}
                   </div>
                   <p className="text-gray-400 mb-2">{plan.period}</p>
-                  <p className="text-yellow-400 font-semibold">{plan.events}</p>
+                  <p className={`font-semibold ${plan.premium ? 'text-purple-400' : 'text-yellow-400'}`}>
+                    {plan.events}
+                  </p>
                   <p className="text-sm text-gray-400 mt-2">{plan.description}</p>
                 </div>
                 
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start text-gray-300">
-                      <Check className="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0 mt-0.5" />
+                      <Check className={`w-5 h-5 mr-3 flex-shrink-0 mt-0.5 ${plan.premium ? 'text-purple-400' : 'text-yellow-400'}`} />
                       <span className="text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
                 <button className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 ${
-                  plan.popular
-                    ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:from-yellow-300 hover:to-orange-400'
-                    : 'border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'
+                  plan.premium
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-400 hover:to-pink-400'
+                    : plan.popular
+                      ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:from-yellow-300 hover:to-orange-400'
+                      : 'border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'
                 }`}>
                   {selectedPlan === plan.name ? 'Seleccionado' : 'Elegir Plan'}
                 </button>
