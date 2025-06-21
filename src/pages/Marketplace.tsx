@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import ServiceCard from '../components/ServiceCard';
 import AuthModal from '../components/AuthModal';
+import AdZone from '../components/AdZone';
 import { Search, Filter, Star, ArrowRight } from 'lucide-react';
 
 const Marketplace = () => {
@@ -144,6 +144,13 @@ const Marketplace = () => {
         </div>
       </section>
 
+      {/* Ad Zone - After Hero */}
+      <div className="bg-gray-900 py-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <AdZone title="Publicidad Marketplace" size="rectangle" position="Post-Hero Marketplace" />
+        </div>
+      </div>
+
       {/* Search and Filters */}
       <section className="py-12 bg-gray-900 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6">
@@ -209,6 +216,11 @@ const Marketplace = () => {
                 />
               ))}
             </div>
+
+            {/* Ad Zone - After Featured Services */}
+            <div className="mt-16 flex justify-center">
+              <AdZone title="Servicios Premium" size="square" position="Post-Destacados" />
+            </div>
           </div>
         </section>
       )}
@@ -223,16 +235,23 @@ const Marketplace = () => {
           </div>
           
           {filteredServices.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredServices.map(service => (
-                <ServiceCard 
-                  key={service.id} 
-                  service={service} 
-                  onAction={() => !isAuthenticated && setShowAuthModal(true)}
-                  isAuthenticated={isAuthenticated}
-                />
-              ))}
-            </div>
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredServices.map(service => (
+                  <ServiceCard 
+                    key={service.id} 
+                    service={service} 
+                    onAction={() => !isAuthenticated && setShowAuthModal(true)}
+                    isAuthenticated={isAuthenticated}
+                  />
+                ))}
+              </div>
+              
+              {/* Ad Zone - After Services Grid */}
+              <div className="mt-16 mb-8">
+                <AdZone title="Banner Servicios" size="banner" position="Post-Servicios" />
+              </div>
+            </>
           ) : (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">🔍</div>

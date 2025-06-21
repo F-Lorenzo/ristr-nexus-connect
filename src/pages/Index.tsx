@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import AuthModal from '../components/AuthModal';
+import AdZone from '../components/AdZone';
 import { ArrowRight, Users, Calendar, Target, Store } from 'lucide-react';
 
 const Index = () => {
@@ -42,6 +42,13 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* Ad Zone - Top Banner */}
+      <div className="bg-black pt-16">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <AdZone title="Banner Superior" size="banner" position="Encabezado Principal" />
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 animate-pulse"></div>
@@ -69,6 +76,13 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Ad Zone - After Hero */}
+      <div className="bg-gray-900 py-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <AdZone title="Publicidad Premium" size="rectangle" position="Post-Hero" />
+        </div>
+      </div>
 
       {/* Services Section */}
       <section className="py-20 bg-gray-900">
@@ -112,6 +126,11 @@ const Index = () => {
               </div>
             ))}
           </div>
+
+          {/* Ad Zone - Middle of Services */}
+          <div className="mt-16 mb-8 flex justify-center">
+            <AdZone title="Espacio Publicitario" size="square" position="Centro de Servicios" />
+          </div>
         </div>
       </section>
 
@@ -133,6 +152,13 @@ const Index = () => {
           </button>
         </div>
       </section>
+
+      {/* Ad Zone - Before Footer */}
+      <div className="bg-gray-800 py-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <AdZone title="Banner Inferior" size="banner" position="Pre-Footer" />
+        </div>
+      </div>
 
       {/* Solidarity Action */}
       <section className="py-16 bg-gray-800 border-t border-gray-700">

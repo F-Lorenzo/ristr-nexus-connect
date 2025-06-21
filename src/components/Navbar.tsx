@@ -13,6 +13,7 @@ const Navbar = () => {
   const isAuthenticated = localStorage.getItem('user') !== null;
 
   const menuItems = [
+    { name: 'Inicio', path: '/' },
     { name: 'TOP', path: '/top' },
     { name: 'RistrEvents', path: '/ristr-events' },
     { name: 'Consultoría', path: '/consultoria' },
