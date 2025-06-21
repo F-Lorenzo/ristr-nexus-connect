@@ -120,7 +120,7 @@ const Marketplace = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 animate-pulse"></div>
         <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
           <h1 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 bg-clip-text text-transparent">
-            Marketplace
+            RistreMarket
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
             Descubre servicios profesionales de élite ofrecidos por expertos verificados. 
@@ -147,7 +147,7 @@ const Marketplace = () => {
       {/* Ad Zone - After Hero */}
       <div className="bg-gray-900 py-8">
         <div className="max-w-7xl mx-auto px-6">
-          <AdZone title="Publicidad Marketplace" size="rectangle" position="Post-Hero Marketplace" />
+          <AdZone title="Publicidad RistreMarket" size="rectangle" position="Post-Hero RistreMarket" />
         </div>
       </div>
 

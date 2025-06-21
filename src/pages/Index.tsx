@@ -33,7 +33,7 @@ const Index = () => {
       features: ["Estrategias personalizadas", "Metodología probada", "Resultados medibles"]
     },
     {
-      title: "Marketplace",
+      title: "RistreMarket",
       description: "Plataforma exclusiva donde profesionales ofrecen y contratan servicios especializados en un ecosistema de confianza.",
       icon: <Store className="w-8 h-8" />,
       action: () => navigate('/marketplace'),
@@ -65,7 +65,7 @@ const Index = () => {
               onClick={() => navigate('/marketplace')}
               className="border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 transform hover:scale-105"
             >
-              Explorar Marketplace
+              Explorar RistreMarket
             </button>
           </div>
         </div>
