@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
@@ -42,13 +43,6 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Ad Zone - Top Banner */}
-      <div className="bg-black pt-16">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <AdZone title="Banner Superior" size="banner" position="Encabezado Principal" />
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 animate-pulse"></div>
