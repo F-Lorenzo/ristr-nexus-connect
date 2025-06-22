@@ -34,12 +34,8 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <img 
-                src="/lovable-uploads/8fe67a07-9ebe-4320-942d-d38992010ae5.png" 
-                alt="Destefano Logo" 
-                className="h-8 w-auto"
-              />
+            <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              Destefano
             </Link>
 
             {/* Desktop Menu */}
