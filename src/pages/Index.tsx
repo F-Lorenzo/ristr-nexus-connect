@@ -12,11 +12,11 @@ const Index = () => {
 
   const services = [
     {
-      title: "TOP - Museo Deportivo",
-      description: "Espacio físico premium para eventos y networking empresarial. Un ambiente único que combina historia deportiva con tecnología de vanguardia.",
+      title: "Academia de Cursos",
+      description: "Programas de formación especializada diseñados por expertos para acelerar tu crecimiento profesional y empresarial.",
       icon: <Target className="w-8 h-8" />,
-      action: () => navigate('/top'),
-      features: ["Espacios exclusivos", "Tecnología avanzada", "Ambiente único"]
+      action: () => navigate('/cursos'),
+      features: ["Cursos especializados", "Instructores expertos", "Certificaciones"]
     },
     {
       title: "RistrEvents",

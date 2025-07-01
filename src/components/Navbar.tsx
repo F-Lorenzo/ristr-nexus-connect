@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const menuItems = [
     { name: 'Inicio', path: '/' },
-    { name: 'TOP', path: '/top' },
+    { name: 'Cursos', path: '/cursos' },
     { name: 'RistrEvents', path: '/ristr-events' },
     { name: 'Consultoría', path: '/consultoria' },
     { name: 'RistreMarket', path: '/marketplace' },
