@@ -51,7 +51,7 @@ const Index = () => {
             Conecta. Crece. Transforma.
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Bienvenido al ecosistema empresarial más exclusivo donde el networking trasciende las conexiones tradicionales. 
+            Bienvenido al ecosistema Ristretto la comunidad empresarial  más exclusiva donde el networking trasciende las conexiones tradicionales. 
             Descubre espacios únicos, eventos premium y un marketplace de servicios profesionales de élite.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
