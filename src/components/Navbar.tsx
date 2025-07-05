@@ -14,10 +14,10 @@ const Navbar = () => {
 
   const menuItems = [
     { name: 'Inicio', path: '/' },
-    { name: 'Cursos', path: '/cursos' },
-    { name: 'RistrEvents', path: '/ristr-events' },
-    { name: 'Consultoría', path: '/consultoria' },
     { name: 'RistreMarket', path: '/marketplace' },
+    { name: 'RistrEvents', path: '/ristr-events' },
+    { name: 'Consultoría privada', path: '/consultoria' },
+    { name: 'Cursos', path: '/cursos' }
   ];
 
   const handleAuthAction = () => {

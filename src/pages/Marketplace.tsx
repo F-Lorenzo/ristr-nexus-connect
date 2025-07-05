@@ -148,6 +148,7 @@ const Marketplace = () => {
       <div className="bg-gray-900 py-8">
         <div className="max-w-7xl mx-auto px-6">
           <AdZone title="Publicidad RistreMarket" size="rectangle" position="Post-Hero RistreMarket" />
+          <div>ZONA PUBLICITARIA PAGOS DIGITALES SA</div>
         </div>
       </div>
 

@@ -40,7 +40,11 @@ const ServiceCard = ({ service, onAction, isAuthenticated }: ServiceCardProps) =
         )}
         <div className="absolute bottom-4 right-4">
           <span className="bg-black/80 text-yellow-400 px-3 py-1 rounded-full text-sm font-semibold">
+          precio publico 
             {service.price}
+          </span>
+          <span className="bg-black/80 text-yellow-400 px-3 py-1 rounded-full text-sm font-semibold">
+          precio Ristretto 20% OFF
           </span>
         </div>
       </div>

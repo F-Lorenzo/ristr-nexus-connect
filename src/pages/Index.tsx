@@ -11,12 +11,12 @@ const Index = () => {
   const navigate = useNavigate();
 
   const services = [
-    {
-      title: "Academia de Cursos",
-      description: "Programas de formación especializada diseñados por expertos para acelerar tu crecimiento profesional y empresarial.",
-      icon: <Target className="w-8 h-8" />,
-      action: () => navigate('/cursos'),
-      features: ["Cursos especializados", "Instructores expertos", "Certificaciones"]
+        {
+      title: "RistreMarket",
+      description: "Plataforma exclusiva donde profesionales ofrecen y contratan servicios especializados en un ecosistema de confianza.",
+      icon: <Store className="w-8 h-8" />,
+      action: () => navigate('/marketplace'),
+      features: ["Servicios verificados", "Conexiones directas", "Ecosistema confiable"]
     },
     {
       title: "RistrEvents",
@@ -33,11 +33,11 @@ const Index = () => {
       features: ["Estrategias personalizadas", "Metodología probada", "Resultados medibles"]
     },
     {
-      title: "RistreMarket",
-      description: "Plataforma exclusiva donde profesionales ofrecen y contratan servicios especializados en un ecosistema de confianza.",
-      icon: <Store className="w-8 h-8" />,
-      action: () => navigate('/marketplace'),
-      features: ["Servicios verificados", "Conexiones directas", "Ecosistema confiable"]
+      title: "Academia de Cursos",
+      description: "Programas de formación especializada diseñados por expertos para acelerar tu crecimiento profesional y empresarial.",
+      icon: <Target className="w-8 h-8" />,
+      action: () => navigate('/cursos'),
+      features: ["Cursos especializados", "Instructores expertos", "Certificaciones"]
     }
   ];
 
@@ -51,15 +51,15 @@ const Index = () => {
             Conecta. Crece. Transforma.
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Bienvenido al ecosistema Ristretto la comunidad empresarial  más exclusiva donde el networking trasciende las conexiones tradicionales. 
-            Descubre espacios únicos, eventos premium y un marketplace de servicios profesionales de élite.
+            Bienvenido al ecosistema Ristretto la comunidad empresarial  más exclusiva donde el networking con propósito trasciende las conexiones tradicionales.<br></br> 
+            Descubre espacios únicos, eventos premium, acciones solidarias y un marketplace de productos y servicios profesionales de élite.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button 
               onClick={() => setShowAuthModal(true)}
               className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-lg font-semibold text-lg hover:from-yellow-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-500/25"
             >
-              Únete a la Comunidad
+              Únete al RISTRETTO
             </button>
             <button 
               onClick={() => navigate('/marketplace')}
@@ -122,7 +122,10 @@ const Index = () => {
           </div>
 
           {/* Ad Zone - Middle of Services */}
-          <div className="mt-16 mb-8 flex justify-center">
+          <div className="mt-16 mb-8 flex justify-center space-x-20">
+            <AdZone title="Espacio Publicitario" size="square" position="Centro de Servicios" />
+            <AdZone title="Espacio Publicitario" size="square" position="Centro de Servicios" />
+            <AdZone title="Espacio Publicitario" size="square" position="Centro de Servicios" />
             <AdZone title="Espacio Publicitario" size="square" position="Centro de Servicios" />
           </div>
         </div>
@@ -132,7 +135,7 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-r from-black via-gray-900 to-black">
         <div className="max-w-4xl mx-auto text-center px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
-            ¿Listo para transformar tu red profesional?
+            ¿Estas listo para ingresar al ecosistema Ristretto?
           </h2>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
             Únete a una comunidad exclusiva de líderes empresariales, emprendedores visionarios y profesionales de élite. 
