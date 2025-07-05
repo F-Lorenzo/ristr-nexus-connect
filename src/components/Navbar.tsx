@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, User } from 'lucide-react';
@@ -14,10 +13,10 @@ const Navbar = () => {
 
   const menuItems = [
     { name: 'Inicio', path: '/' },
-    { name: 'Cursos', path: '/cursos' },
+    { name: 'RistreMarket', path: '/marketplace' },
     { name: 'RistrEvents', path: '/ristr-events' },
     { name: 'Consultoría', path: '/consultoria' },
-    { name: 'RistreMarket', path: '/marketplace' },
+    { name: 'Cursos', path: '/cursos' },
   ];
 
   const handleAuthAction = () => {
