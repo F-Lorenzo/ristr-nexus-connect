@@ -1,298 +1,369 @@
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import ServiceCard from '../components/ServiceCard';
 import AuthModal from '../components/AuthModal';
-import AdZone from '../components/AdZone';
-import { Search, Filter, Star, ArrowRight } from 'lucide-react';
+import { Search, Filter, Star, Users, MapPin, Award, ChevronDown, Play } from 'lucide-react';
 
 const Marketplace = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedProvider, setSelectedProvider] = useState('all');
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const categories = [
-    { id: 'all', name: 'Todos los Servicios' },
+    { id: 'all', name: 'Todos' },
     { id: 'consultoria', name: 'Consultoría' },
-    { id: 'marketing', name: 'Marketing Digital' },
-    { id: 'desarrollo', name: 'Desarrollo Web' },
-    { id: 'diseno', name: 'Diseño Gráfico' },
-    { id: 'legal', name: 'Servicios Legales' },
-    { id: 'finanzas', name: 'Finanzas y Contabilidad' },
-    { id: 'coaching', name: 'Coaching Empresarial' }
+    { id: 'marketing', name: 'Marketing' },
+    { id: 'desarrollo', name: 'Desarrollo' },
+    { id: 'diseno', name: 'Diseño' },
+    { id: 'legal', name: 'Legal' },
+    { id: 'finanzas', name: 'Finanzas' },
+    { id: 'coaching', name: 'Coaching' }
   ];
+
+  const providers = [
+    { id: 'all', name: 'Todos los Proveedores' },
+    { id: 'digital-consulting', name: 'Digital Consulting' },
+    { id: 'marketing-strategist', name: 'Marketing Strategist' },
+    { id: 'dev-premium', name: 'Dev Premium' },
+    { id: 'creative-studio', name: 'Creative Studio' },
+    { id: 'legal-corp', name: 'Legal Corp' },
+    { id: 'finance-pro', name: 'Finance Pro' }
+  ];
+
+  // Sponsors por categoría
+  const categorySponsors = {
+    'consultoria': { name: 'Digital Consulting', logo: 'DC' },
+    'marketing': { name: 'Marketing Strategist', logo: 'MS' },
+    'desarrollo': { name: 'Dev Premium', logo: 'DP' },
+    'diseno': { name: 'Creative Studio', logo: 'CS' },
+    'legal': { name: 'Legal Corp', logo: 'LC' },
+    'finanzas': { name: 'Finance Pro', logo: 'FP' },
+    'coaching': { name: 'Business Coach', logo: 'BC' },
+    'all': { name: 'RistreMarket Premium', logo: 'RM' }
+  };
 
   const services = [
     {
       id: 1,
       title: "Consultoría en Transformación Digital",
-      description: "Acompañamiento integral para la digitalización de procesos empresariales con metodologías ágiles y tecnologías de vanguardia.",
       provider: "María González",
-      providerTitle: "CEO Digital Consulting",
+      providerCompany: "Digital Consulting",
+      providerId: "digital-consulting",
+      category: "consultoria",
       price: "$2500",
       rating: 4.9,
       reviews: 127,
-      category: "consultoria",
+      clients: 45,
+      location: "Madrid, España",
       image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: true
+      description: "Acompañamiento integral para la digitalización de procesos empresariales con metodologías ágiles."
     },
     {
       id: 2,
       title: "Estrategia de Marketing Digital 360°",
-      description: "Desarrollo de estrategias integrales de marketing digital con enfoque en ROI y crecimiento sostenible.",
       provider: "Carlos Mendoza",
-      providerTitle: "Marketing Strategist",
+      providerCompany: "Marketing Strategist",
+      providerId: "marketing-strategist",
+      category: "marketing",
       price: "$1800",
       rating: 4.8,
       reviews: 89,
-      category: "marketing",
+      clients: 67,
+      location: "Barcelona, España",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: false
+      description: "Desarrollo de estrategias integrales de marketing digital con enfoque en ROI y crecimiento sostenible."
     },
     {
       id: 3,
       title: "Desarrollo de Aplicaciones Web Premium",
-      description: "Creación de aplicaciones web escalables con tecnologías modernas, UX/UI optimizado y arquitectura robusta.",
       provider: "Ana Rodríguez",
-      providerTitle: "Full Stack Developer",
+      providerCompany: "Dev Premium",
+      providerId: "dev-premium",
+      category: "desarrollo",
       price: "$5000",
       rating: 5.0,
       reviews: 45,
-      category: "desarrollo",
+      clients: 23,
+      location: "Valencia, España",
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: true
+      description: "Creación de aplicaciones web escalables con tecnologías modernas y UX/UI optimizado."
     },
     {
       id: 4,
       title: "Identidad Corporativa y Branding",
-      description: "Diseño integral de identidad visual corporativa que refleje los valores y posicionamiento de tu marca.",
       provider: "Luis Santos",
-      providerTitle: "Creative Director",
+      providerCompany: "Creative Studio",
+      providerId: "creative-studio",
+      category: "diseno",
       price: "$1200",
       rating: 4.7,
       reviews: 156,
-      category: "diseno",
+      clients: 89,
+      location: "Sevilla, España",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: false
+      description: "Diseño integral de identidad visual corporativa que refleje los valores de tu marca."
     },
     {
       id: 5,
       title: "Asesoría Legal Empresarial Integral",
-      description: "Acompañamiento legal completo para empresas en crecimiento, contratos, compliance y estructuras societarias.",
       provider: "Dr. Patricia Vera",
-      providerTitle: "Abogada Corporativa",
+      providerCompany: "Legal Corp",
+      providerId: "legal-corp",
+      category: "legal",
       price: "$800",
       rating: 4.9,
       reviews: 203,
-      category: "legal",
+      clients: 134,
+      location: "Bilbao, España",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: false
+      description: "Acompañamiento legal completo para empresas en crecimiento y compliance."
     },
     {
       id: 6,
       title: "Gestión Financiera y Optimización Fiscal",
-      description: "Optimización de estructura financiera, planificación fiscal estratégica y control de gestión empresarial.",
       provider: "Roberto Díaz",
-      providerTitle: "CFO & Tax Advisor",
+      providerCompany: "Finance Pro",
+      providerId: "finance-pro",
+      category: "finanzas",
       price: "$1500",
       rating: 4.8,
       reviews: 78,
-      category: "finanzas",
+      clients: 56,
+      location: "Madrid, España",
       image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: true
+      description: "Optimización de estructura financiera y planificación fiscal estratégica."
     }
   ];
 
-  const filteredServices = services.filter(service => {
+  const currentSponsor = categorySponsors[selectedCategory];
+
+  // Ordenar servicios: primero los del sponsor actual
+  const sortedServices = [...services].sort((a, b) => {
+    if (selectedCategory !== 'all') {
+      const aIsSponsored = a.providerId === currentSponsor?.name?.toLowerCase().replace(/ /g, '-');
+      const bIsSponsored = b.providerId === currentSponsor?.name?.toLowerCase().replace(/ /g, '-');
+      if (aIsSponsored && !bIsSponsored) return -1;
+      if (!aIsSponsored && bIsSponsored) return 1;
+    }
+    return 0;
+  });
+
+  const filteredServices = sortedServices.filter(service => {
     const matchesSearch = service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          service.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || service.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+    const matchesProvider = selectedProvider === 'all' || service.providerId === selectedProvider;
+    return matchesSearch && matchesCategory && matchesProvider;
   });
-
-  const featuredServices = services.filter(service => service.featured);
 
   const isAuthenticated = localStorage.getItem('user') !== null;
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden pt-16">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 animate-pulse"></div>
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
-          <h1 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 bg-clip-text text-transparent">
+      {/* Header Section */}
+      <section className="pt-20 pb-8 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
             RistreMarket
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Descubre servicios profesionales de élite ofrecidos por expertos verificados. 
-            Conecta directamente con proveedores de confianza en un ecosistema exclusivo.
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl">
+            Marketplace exclusivo de servicios profesionales de élite. Conecta con proveedores verificados en nuestro ecosistema de confianza.
           </p>
-          {!isAuthenticated && (
-            <div className="bg-gray-900 border border-yellow-400/50 rounded-xl p-8 max-w-2xl mx-auto mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">¿Listo para acceder?</h3>
-              <p className="text-gray-300 mb-6">
-                Regístrate para contratar servicios y conectar directamente con proveedores verificados
-              </p>
-              <button 
-                onClick={() => setShowAuthModal(true)}
-                className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-3 rounded-lg font-semibold hover:from-yellow-300 hover:to-orange-400 transition-all duration-300 flex items-center gap-2 mx-auto"
+          
+          {/* Search Bar */}
+          <div className="flex items-center bg-gray-900 border border-gray-700 rounded-lg p-3 max-w-md">
+            <Search className="w-5 h-5 text-gray-400 mr-3" />
+            <input
+              type="text"
+              placeholder="Buscar servicios..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="flex-1 bg-transparent text-white focus:outline-none"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filters */}
+      <section className="py-6 bg-gray-900 border-b border-gray-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-wrap gap-3 justify-center">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  selectedCategory === category.id
+                    ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-600'
+                }`}
               >
-                Regístrate para Comprar
-                <ArrowRight className="w-5 h-5" />
+                {category.name}
               </button>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Ad Zone - After Hero */}
-      <div className="bg-gray-900 py-8">
-        <div className="max-w-7xl mx-auto px-6">
-          <AdZone title="Publicidad RistreMarket" size="rectangle" position="Post-Hero RistreMarket" />
-        </div>
-      </div>
-
-      {/* Search and Filters */}
-      <section className="py-12 bg-gray-900 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-6 items-center">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-2xl">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Buscar servicios, proveedores o palabras clave..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-black border border-gray-600 rounded-lg pl-12 pr-4 py-4 text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
-              />
-            </div>
-
-            {/* Category Filter */}
-            <div className="flex items-center gap-4">
-              <Filter className="text-gray-400 w-5 h-5" />
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="bg-black border border-gray-600 rounded-lg px-4 py-4 text-white focus:border-yellow-400 focus:outline-none transition-colors min-w-48"
-              >
-                {categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
+      {/* Main Content */}
+      <section className="py-8 bg-black">
+        <div className="max-w-7xl mx-auto px-6 flex gap-8">
+          {/* Sidebar */}
+          <div className="w-64 flex-shrink-0">
+            {/* Provider Filter */}
+            <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-6">
+              <h3 className="text-white font-semibold mb-4 flex items-center">
+                <Filter className="w-4 h-4 mr-2 text-yellow-400" />
+                Filtro por proveedor
+              </h3>
+              <div className="space-y-2">
+                {providers.map((provider) => (
+                  <label key={provider.id} className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="provider"
+                      value={provider.id}
+                      checked={selectedProvider === provider.id}
+                      onChange={(e) => setSelectedProvider(e.target.value)}
+                      className="sr-only"
+                    />
+                    <div className={`w-4 h-4 rounded border-2 mr-3 flex items-center justify-center ${
+                      selectedProvider === provider.id 
+                        ? 'border-yellow-400 bg-yellow-400' 
+                        : 'border-gray-600'
+                    }`}>
+                      {selectedProvider === provider.id && (
+                        <div className="w-2 h-2 bg-black rounded"></div>
+                      )}
+                    </div>
+                    <span className="text-gray-300 text-sm hover:text-white transition-colors duration-200">
+                      {provider.name}
+                    </span>
+                  </label>
                 ))}
-              </select>
+              </div>
+            </div>
+
+            {/* Advertisement Section */}
+            <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+              <h3 className="text-white font-semibold mb-3">Publicidad</h3>
+              <div className="bg-gray-800 rounded-lg h-48 flex items-center justify-center">
+                <span className="text-gray-500 text-sm">Espacio Publicitario</span>
+              </div>
             </div>
           </div>
 
-          <div className="mt-6 text-center">
-            <p className="text-gray-400">
-              Mostrando {filteredServices.length} servicios
-              {selectedCategory !== 'all' && ` en ${categories.find(c => c.id === selectedCategory)?.name}`}
-            </p>
-          </div>
-        </div>
-      </section>
+          {/* Services Grid */}
+          <div className="flex-1">
+            {/* Sponsor Section */}
+            <div className="bg-gradient-to-br from-yellow-400/10 to-orange-500/10 border border-yellow-400/20 rounded-lg p-6 mb-6">
+              <h3 className="text-yellow-400 font-semibold mb-3">Sponsor Temático</h3>
+              <div className="bg-gray-800 rounded-lg h-32 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-yellow-400 mb-2">{currentSponsor.logo}</div>
+                  <div className="text-white font-medium">{currentSponsor.name}</div>
+                  <div className="text-gray-400 text-sm">Patrocinador oficial</div>
+                </div>
+              </div>
+            </div>
 
-      {/* Featured Services */}
-      {featuredServices.length > 0 && (
-        <section className="py-20 bg-black">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                Servicios Destacados
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-white text-xl font-semibold">
+                {filteredServices.length} servicio{filteredServices.length !== 1 ? 's' : ''} encontrado{filteredServices.length !== 1 ? 's' : ''}
               </h2>
-              <p className="text-xl text-gray-400">
-                Los servicios más populares y mejor valorados por nuestra comunidad
-              </p>
             </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredServices.map(service => (
-                <ServiceCard 
-                  key={service.id} 
-                  service={service} 
-                  onAction={() => !isAuthenticated && setShowAuthModal(true)}
-                  isAuthenticated={isAuthenticated}
-                />
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredServices.map((service) => (
+                <div 
+                  key={service.id}
+                  className="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/10 cursor-pointer group"
+                >
+                  <div className="relative">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Play className="w-12 h-12 text-yellow-400" />
+                    </div>
+                    <div className="absolute top-4 right-4 bg-black/70 px-2 py-1 rounded-lg">
+                      <span className="text-yellow-400 font-bold">{service.price}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs text-yellow-400 bg-yellow-400/10 px-2 py-1 rounded-full">
+                        {categories.find(c => c.id === service.category)?.name}
+                      </span>
+                      <div className="flex items-center text-yellow-400">
+                        <Star className="w-4 h-4 fill-current mr-1" />
+                        <span className="text-sm font-semibold">{service.rating}</span>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                      {service.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-300 mb-4">
+                      <div className="flex items-center">
+                        <Award className="w-4 h-4 mr-1" />
+                        <span>Por {service.provider}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        <span>{service.location}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-700 mb-4">
+                      <div className="flex items-center text-gray-400">
+                        <Users className="w-4 h-4 mr-1" />
+                        <span className="text-sm">{service.clients} clientes</span>
+                      </div>
+                      <div className="text-gray-400 text-sm">
+                        {service.reviews} reseñas
+                      </div>
+                    </div>
+                    
+                    <button 
+                      onClick={() => !isAuthenticated && setShowAuthModal(true)}
+                      className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-lg font-semibold hover:from-yellow-300 hover:to-orange-400 transition-all duration-200"
+                    >
+                      {isAuthenticated ? 'Contratar Servicio' : 'Regístrate para Contratar'}
+                    </button>
+                  </div>
+                </div>
               ))}
             </div>
 
-            {/* Ad Zone - After Featured Services */}
-            <div className="mt-16 flex justify-center">
-              <AdZone title="Servicios Premium" size="square" position="Post-Destacados" />
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* All Services */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-white">
-              Todos los Servicios
-            </h2>
-          </div>
-          
-          {filteredServices.length > 0 ? (
-            <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredServices.map(service => (
-                  <ServiceCard 
-                    key={service.id} 
-                    service={service} 
-                    onAction={() => !isAuthenticated && setShowAuthModal(true)}
-                    isAuthenticated={isAuthenticated}
-                  />
-                ))}
+            {filteredServices.length === 0 && (
+              <div className="text-center py-20">
+                <div className="text-gray-400 text-xl mb-4">
+                  No se encontraron servicios con los filtros seleccionados
+                </div>
+                <button 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('all');
+                    setSelectedProvider('all');
+                  }}
+                  className="text-yellow-400 hover:text-orange-400 transition-colors duration-200"
+                >
+                  Limpiar filtros
+                </button>
               </div>
-              
-              {/* Ad Zone - After Services Grid */}
-              <div className="mt-16 mb-8">
-                <AdZone title="Banner Servicios" size="banner" position="Post-Servicios" />
-              </div>
-            </>
-          ) : (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-white mb-4">No se encontraron servicios</h3>
-              <p className="text-gray-400 mb-8">
-                Intenta con otros términos de búsqueda o selecciona una categoría diferente
-              </p>
-              <button 
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('all');
-                }}
-                className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-lg font-semibold hover:from-yellow-300 hover:to-orange-400 transition-all duration-200"
-              >
-                Ver Todos los Servicios
-              </button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
-
-      {/* CTA Section for Non-Authenticated Users */}
-      {!isAuthenticated && (
-        <section className="py-20 bg-black border-t border-gray-800">
-          <div className="max-w-4xl mx-auto text-center px-6">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              ¿Listo para conectar con los mejores?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Únete a nuestra plataforma y accede a servicios profesionales de élite. 
-              Regístrate ahora y comienza a construir tu red de proveedores de confianza.
-            </p>
-            <button 
-              onClick={() => setShowAuthModal(true)}
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-10 py-4 rounded-lg font-bold text-xl hover:from-yellow-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              Crear Cuenta Gratuita
-            </button>
-          </div>
-        </section>
-      )}
 
       {/* Auth Modal */}
       {showAuthModal && (
