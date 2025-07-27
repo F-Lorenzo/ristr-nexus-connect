@@ -25,16 +25,6 @@ const Cursos = () => {
     { id: 'universidad-bilbao', name: 'Universidad de Bilbao' }
   ];
 
-  // Sponsoreo por temática
-  const categorySponsors = {
-    'todos': null,
-    'ia': 'universidad-valencia',
-    'marketing': 'universidad-madrid',
-    'rrhh': 'universidad-barcelona',
-    'finanzas': 'universidad-bilbao',
-    'liderazgo': 'universidad-sevilla'
-  };
-
   const courses = [
     {
       id: 1,
@@ -80,7 +70,7 @@ const Cursos = () => {
       title: "Marketing Digital Avanzado",
       instructor: "Laura Torres",
       category: "marketing",
-      provider: "universidad-madrid",
+      provider: "universidad-sevilla",
       duration: "6 horas",
       students: 2100,
       rating: 4.6,
@@ -161,14 +151,6 @@ const Cursos = () => {
       (selectedCategory === 'todos' || course.category === selectedCategory) &&
       (selectedProvider === 'todos' || course.provider === selectedProvider)
     );
-  }).sort((a, b) => {
-    // Si hay una categoría seleccionada y tiene sponsor, priorizar cursos de esa universidad
-    const currentSponsor = categorySponsors[selectedCategory];
-    if (currentSponsor) {
-      if (a.provider === currentSponsor && b.provider !== currentSponsor) return -1;
-      if (b.provider === currentSponsor && a.provider !== currentSponsor) return 1;
-    }
-    return 0;
   });
 
   return (
@@ -218,27 +200,6 @@ const Cursos = () => {
         </div>
       </section>
 
-      {/* Sponsor Temático Section */}
-      {selectedCategory !== 'todos' && categorySponsors[selectedCategory] && (
-        <section className="py-6 bg-gray-900 border-b border-gray-700">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 border border-yellow-400/20 rounded-lg p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-yellow-400 font-semibold mb-2">Sponsor Temático - {categories.find(c => c.id === selectedCategory)?.name}</h3>
-                  <p className="text-gray-300 text-sm">
-                    Sponsoreado por {providers.find(p => p.id === categorySponsors[selectedCategory])?.name}
-                  </p>
-                </div>
-                <div className="bg-gray-800 rounded-lg h-16 w-32 flex items-center justify-center">
-                  <span className="text-gray-500 text-xs">Logo Sponsor</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Main Content */}
       <section className="py-8 bg-black">
         <div className="max-w-7xl mx-auto px-6 flex gap-8">
@@ -275,6 +236,14 @@ const Cursos = () => {
                     </span>
                   </label>
                 ))}
+              </div>
+            </div>
+
+            {/* Sponsor Section */}
+            <div className="bg-gradient-to-br from-yellow-400/10 to-orange-500/10 border border-yellow-400/20 rounded-lg p-6 mb-6">
+              <h3 className="text-yellow-400 font-semibold mb-3">Sponsor Temático</h3>
+              <div className="bg-gray-800 rounded-lg h-32 flex items-center justify-center">
+                <span className="text-gray-500 text-sm">Espacio Publicitario</span>
               </div>
             </div>
 
