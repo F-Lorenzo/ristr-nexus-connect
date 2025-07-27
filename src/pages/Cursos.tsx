@@ -182,7 +182,7 @@ const Cursos = () => {
       {/* Category Filters */}
       <section className="py-6 bg-gray-900 border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((category) => (
               <button
                 key={category.id}
