@@ -239,13 +239,6 @@ const Cursos = () => {
               </div>
             </div>
 
-            {/* Sponsor Section */}
-            <div className="bg-gradient-to-br from-yellow-400/10 to-orange-500/10 border border-yellow-400/20 rounded-lg p-6 mb-6">
-              <h3 className="text-yellow-400 font-semibold mb-3">Sponsor Temático</h3>
-              <div className="bg-gray-800 rounded-lg h-32 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Espacio Publicitario</span>
-              </div>
-            </div>
 
             {/* Advertisement Section */}
             <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
@@ -258,6 +251,14 @@ const Cursos = () => {
 
           {/* Courses Grid */}
           <div className="flex-1">
+            {/* Sponsor Section */}
+            <div className="bg-gradient-to-br from-yellow-400/10 to-orange-500/10 border border-yellow-400/20 rounded-lg p-6 mb-6">
+              <h3 className="text-yellow-400 font-semibold mb-3">Sponsor Temático</h3>
+              <div className="bg-gray-800 rounded-lg h-32 flex items-center justify-center">
+                <span className="text-gray-500 text-sm">Espacio Publicitario</span>
+              </div>
+            </div>
+
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-white text-xl font-semibold">
                 {filteredCourses.length} curso{filteredCourses.length !== 1 ? 's' : ''} encontrado{filteredCourses.length !== 1 ? 's' : ''}
