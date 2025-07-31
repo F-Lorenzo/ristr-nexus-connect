@@ -179,6 +179,58 @@ const Cursos = () => {
         </div>
       </section>
 
+      {/* Recommended Courses Section */}
+      <section className="py-8 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-white text-2xl font-bold mb-6 flex items-center">
+            <Award className="w-6 h-6 mr-3 text-yellow-400" />
+            Cursos Recomendados del Mes
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {courses.slice(0, 5).map((course) => (
+              <div 
+                key={course.id}
+                className="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="relative">
+                  <img 
+                    src={course.image} 
+                    alt={course.title}
+                    className="w-full h-32 object-cover"
+                  />
+                  <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-full text-xs font-bold">
+                    TOP
+                  </div>
+                </div>
+                
+                <div className="p-4">
+                  <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-yellow-400 transition-colors duration-300 line-clamp-2">
+                    {course.title}
+                  </h3>
+                  
+                  <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
+                    <div className="flex items-center">
+                      <Star className="w-3 h-3 fill-current text-yellow-400 mr-1" />
+                      <span>{course.rating}</span>
+                    </div>
+                    <span className="text-yellow-400 font-bold">{course.price}</span>
+                  </div>
+                  
+                  <div className="flex items-center text-xs text-gray-400 mb-3">
+                    <Users className="w-3 h-3 mr-1" />
+                    <span>{course.students}</span>
+                  </div>
+                  
+                  <button className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-2 rounded-lg font-semibold text-xs hover:from-yellow-300 hover:to-orange-400 transition-all duration-200">
+                    Ver Curso
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Category Filters */}
       <section className="py-6 bg-gray-900 border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-6">
@@ -251,56 +303,6 @@ const Cursos = () => {
 
           {/* Courses Grid */}
           <div className="flex-1">
-            {/* Recommended Courses Section */}
-            <div className="mb-8">
-              <h2 className="text-white text-2xl font-bold mb-6 flex items-center">
-                <Award className="w-6 h-6 mr-3 text-yellow-400" />
-                Cursos Recomendados del Mes
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                {courses.slice(0, 5).map((course) => (
-                  <div 
-                    key={course.id}
-                    className="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                  >
-                    <div className="relative">
-                      <img 
-                        src={course.image} 
-                        alt={course.title}
-                        className="w-full h-32 object-cover"
-                      />
-                      <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-full text-xs font-bold">
-                        TOP
-                      </div>
-                    </div>
-                    
-                    <div className="p-4">
-                      <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-yellow-400 transition-colors duration-300 line-clamp-2">
-                        {course.title}
-                      </h3>
-                      
-                      <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-                        <div className="flex items-center">
-                          <Star className="w-3 h-3 fill-current text-yellow-400 mr-1" />
-                          <span>{course.rating}</span>
-                        </div>
-                        <span className="text-yellow-400 font-bold">{course.price}</span>
-                      </div>
-                      
-                      <div className="flex items-center text-xs text-gray-400 mb-3">
-                        <Users className="w-3 h-3 mr-1" />
-                        <span>{course.students}</span>
-                      </div>
-                      
-                      <button className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-2 rounded-lg font-semibold text-xs hover:from-yellow-300 hover:to-orange-400 transition-all duration-200">
-                        Ver Curso
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Sponsor Section */}
             <div className="bg-gradient-to-br from-yellow-400/10 to-orange-500/10 border border-yellow-400/20 rounded-lg p-6 mb-6">
               <h3 className="text-yellow-400 font-semibold mb-3">Sponsor Temático</h3>
