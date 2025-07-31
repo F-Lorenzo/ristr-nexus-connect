@@ -17,6 +17,7 @@ const Navbar = () => {
     { name: 'RistrEvents', path: '/ristr-events' },
     { name: 'Consultoría', path: '/consultoria' },
     { name: 'Cursos', path: '/cursos' },
+    { name: 'Membresías', path: '/membresias' },
   ];
 
   const handleAuthAction = () => {
